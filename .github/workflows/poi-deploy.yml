@@ -47,5 +47,9 @@ jobs:
         app-name: openhackf1c9cxe9poi
         slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
+    - name: Ensure staging is running
+      run: bash scripts/polling.sh https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/healthcheck/poi
+    - name: Staging ran well
+      run: echo "Good job, now flip"
     - name: Azure Logout
       run: az logout
