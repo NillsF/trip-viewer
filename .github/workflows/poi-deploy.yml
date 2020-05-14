@@ -31,6 +31,7 @@ jobs:
         ADJECTIVE: greater
       with:
         filename: .github/DEPLOY_ISSUE.md
+
     - name: Docker Login
       uses: Azure/docker-login@v1
       with:
