@@ -27,6 +27,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEPLOY: ${{ github.run_number }}
+        DEPLOY2: testing
+        ADJECTIVE: great
       with:
         filename: .github/DEPLOY_ISSUE.md
     - name: Docker Login
