@@ -22,6 +22,13 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - uses: JasonEtco/create-an-issue@v2
+      name: Open Issue
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEPLOY: ${{ github.run_number }}
+      with:
+        filename: .github/DEPLOY_ISSUE.md
     - name: Docker Login
       uses: Azure/docker-login@v1
       with:
@@ -47,13 +54,7 @@ jobs:
         app-name: openhackf1c9cxe9poi
         slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
-    - uses: JasonEtco/create-an-issue@v2
-      name: Open Issue
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEPLOY: ${{ github.run_number }}
-      with:
-        filename: .github/DEPLOY_ISSUE.md.md
+    
       
     - name: Azure Logout
       run: az logout
